@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .table {
+                width: 100%;
+                table-layout: fixed;
+                text-align: center;
+                margin-bottom: 50px;
+            }
+            #submit_button_wrapper {
+                width: 100%;
+                text-align: center;
+            }
+            .x, .y, .z {
+                width: 50%;
+            }
+            .wrapper {
+                width: 100%;
+                margin-top: 15px;
+                text-align: center;
+            }
+            span {
+                color: red;
+            }
+            h3 {
+                text-align: center;
+            }
+            .dropdown {
+                text-align: center;
+            }
+            .dropdown_OAR {
+                text-align: center;
+                margin-right: 5px;
+            }
+            #dropdown_wrapper_OAR {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 75px;
+            }
+            input {
+                text-align: center;
+            }
+        </style>
+        <title>ABC Costing</title>
+    </head>
+    <body>
+        <table id="production_data" class="table">
+           <tr>
+               <th>Production Data</th>
+               <th>X</th>
+               <th>Y</th>
+               <th>Z</th>
+            </tr>
+            <tr>
+                <td class="production_data_OAR">Units</td>
+                <td><input type="number" class="units x" value="20000" id="x_units"></td>
+                <td><input type="number" class="units y" value="12500" id="y_units"></td>
+                <td><input type="number" class="units z" value="5000" id="z_units"></td>
+            </tr>
+            <tr>
+                <td class="production_data_OAR">Direct Materials</td>
+                <td><input type="number" class="direct_materials x" value="25" id="x_materials"></td>
+                <td><input type="number" class="direct_materials y" value="30" id="y_materials"></td>
+                <td><input type="number" class="direct_materials z" value="24" id="z_materials"></td>
+            </tr>
+            <tr>
+                <td class="production_data_OAR">Direct Labour Rate</td>
+                <td><input type="number" class="labour_rate x" value="15" id="x_labour_rate"></td>
+                <td><input type="number" class="labour_rate y" value="15" id="y_labour_rate"></td>
+                <td><input type="number" class="labour_rate z" value="15" id="z_labour_rate"></td>
+            </tr>
+            <tr>
+                <td class="production_data_OAR">Direct Labour Hours</td>
+                <td><input type="number" class="labour_hours x" value="3" id="x_labour_hours"></td>
+                <td><input type="number" class="labour_hours y" value="4" id="y_labour_hours"></td>
+                <td><input type="number" class="labour_hours z" value="2" id="z_labour_hours"></td>
+            </tr>
+            <tr>
+                <td class="production_data production_data_OAR">Machine Time</td>
+                <td><input type="number" class="machine_time x" value="2" id="x_machine_time"></td>
+                <td><input type="number" class="machine_time y" value="4" id="y_machine_time"></td>
+                <td><input type="number" class="machine_time z" value="2" id="z_machine_time"></td>
+            </tr>
+            <tr>
+                <td class="production_data production_data_OAR">Production Runs</td>
+                <td><input type="number" class="production_runs x" value="5" id="x_runs"></td>
+                <td><input type="number" class="production_runs y" value="10" id="y_runs"></td>
+                <td><input type="number" class="production_runs z" value="25" id="z_runs"></td>
+            </tr>
+            <tr>
+                <td class="production_data production_data_OAR">Material Receipts</td>
+                <td><input type="number" class="material_receipts x" value="10" id="x_receipts"></td>
+                <td><input type="number" class="material_receipts y" value="20" id="y_receipts"></td>
+                <td><input type="number" class="material_receipts z" value="20" id="z_receipts"></td>
+            </tr>
+            <tr>
+                <td class="production_data production_data_OAR">Production Orders</td>
+                <td><input type="number" class="production_orders x" value="1" id="x_orders"></td>
+                <td><input type="number" class="production_orders y" value="1" id="y_orders"></td>
+                <td><input type="number" class="production_orders z" value="1" id="z_orders"></td>
+            </tr>
+        </table>
+        <table id="cost_pool_table" class="table">
+            <tr>
+                <th>Overhead Cost Pool</th>
+                <th>Annual Cost</th>
+                <th>Cost Driver</th>
+            </tr>
+            <tr>
+                <td class="overhead_cost_pool">Machine Setup Costs</td>
+                <td><input type="number" class="annual_cost" value="400000" id="setup_annual_costs"></td>
+                <td><select class="dropdown" id="setup_dropdown">
+                    <option value="machine_time">Machine Time</option>
+                    <option value="production_runs" selected="selected">Production Runs</option>
+                    <option value="material_receipts">Material Receipts</option>
+                    <option value="production_orders">Production Orders</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="overhead_cost_pool">Machine Running Costs</td>
+                <td><input type="number" class="annual_cost" value="200000" id="machine_running_annual_costs"></td>
+                <td><select class="dropdown" id="machine_running_dropdown">
+                    <option value="machine_time" selected="selected">Machine Time</option>
+                    <option value="production_runs">Production Runs</option>
+                    <option value="material_receipts">Material Receipts</option>
+                    <option value="production_orders">Production Orders</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="overhead_cost_pool">Goods Inwards Costs</td>
+                <td><input type="number" class="annual_cost" value="100000" id="goods_inwards_annual_costs"></td>
+                <td><select class="dropdown" id="goods_inwards_dropdown">
+                    <option value="machine_time">Machine Time</option>
+                    <option value="production_runs">Production Runs</option>
+                    <option value="material_receipts" selected="selected">Material Receipts</option>
+                    <option value="production_orders">Production Orders</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="overhead_cost_pool">Packaging Costs</td>
+                <td><input type="number" class="annual_cost" value="1" id="packaging_annual_costs"></td>
+                <td><select class="dropdown" id="packaging_dropdown">
+                    <option value="machine_time">Machine Time</option>
+                    <option value="production_runs">Production Runs</option>
+                    <option value="material_receipts">Material Receipts</option>
+                    <option value="production_orders" selected="selected">Production Orders</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="overhead_cost_pool">Engineering Costs</td>
+                <td><input type="number" class="annual_cost" value="1" id="engineering_annual_costs"></td>
+                <td><select class="dropdown" id="engineering_dropdown">
+                    <option value="machine_time">Machine Time</option>
+                    <option value="production_runs">Production Runs</option>
+                    <option value="material_receipts">Material Receipts</option>
+                    <option value="production_orders" selected="selected">Production Orders</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <div id="submit_button_wrapper">
+            <button id="submit" onclick="Calculate()">Calculate</button>
+        </div>
+        <div id="x_total_cost_wrapper" class="wrapper">
+            <div id="x_total_cost" class="result">One Unit of Product X Costs: £<span id="x_total_cost_span">0.00</span></div>
+        </div>
+        <div id="y_total_cost_wrapper" class="wrapper">
+            <div id="y_total_cost" class="result">One Unit of Product Y Costs: £<span id="y_total_cost_span">0.00</span></div>
+        </div>
+        <div id="z_total_cost_wrapper" class="wrapper">
+            <div id="z_total_cost" class="result">One Unit of Product Z Costs: £<span id="z_total_cost_span">0.00</span></div>
+        </div>
+        <hr>
+        <h3>Overhead Absorption Rate</h3>
+        <div id="dropdown_wrapper_OAR">
+            <label class="dropdown_OAR" for="OAR">Choose OAR Basis: </label>
+            <select class="dropdown_OAR" name="OAR" id="OAR">
+                <option value="units">Units</option>
+                <option value="direct_labour_hours">Labour Hours</option>
+                <option value="machine_time">Machine Time</option>
+                <option value="production_runs">Production Runs</option>
+                <option value="material_receipts">Material Receipts</option>
+                <option value="production_orders">Production Orders</option>
+            </select>
+            <div id="OAR_submit_button_wrapper">
+                <button id="OAR_submit" onclick="OAR()">Calculate</button>
+            </div>
+        </div>
+        <div id="x_OAR_wrapper" class="wrapper">
+            <div id="x_OAR_total_cost" class="result">One Unit of Product X Costs: £<span id="x_OAR_total_cost_span">0.00</span></div>
+        </div>
+        <div id="y_OAR_total_cost_wrapper" class="wrapper">
+            <div id="y_total_cost" class="result">One Unit of Product Y Costs: £<span id="y_OAR_total_cost_span">0.00</span></div>
+        </div>
+        <div id="z_OAR_total_cost_wrapper" class="wrapper">
+            <div id="z_OAR_total_cost" class="result">One Unit of Product Z Costs: £<span id="z_OAR_total_cost_span">0.00</span></div>
+        </div>
+        <script>
+            function Calculate() {
+                let production_data = Array.from(document.querySelectorAll(".production_data")).map(x => x.innerText.toLowerCase().replace(/ /g, "_"));
+                
+                let product_x = Array.from(document.querySelectorAll(".x")).map(x => parseInt(x.value));
+                let product_y = Array.from(document.querySelectorAll(".y")).map(x => parseInt(x.value));
+                let product_z = Array.from(document.querySelectorAll(".z")).map(x => parseInt(x.value));
+                
+                let x_span = document.getElementById("x_total_cost_span");
+                let y_span = document.getElementById("y_total_cost_span");
+                let z_span = document.getElementById("z_total_cost_span");
+                
+                let x = {};
+                for (let i = 4 ; i < 8 ; i++) {
+                    if (i == 4) {
+                        x[production_data[i - 4]] = product_x[i] * product_x[0]
+                    } else {
+                        x[production_data[i - 4]] = product_x[i]
+                    }
+                }
+                let y = {};
+                for (let i = 4 ; i < 8 ; i++) {
+                    if (i == 4) {
+                        y[production_data[i - 4]] = product_y[i] * product_y[0]
+                    } else {
+                        y[production_data[i - 4]] = product_y[i]
+                    }
+                }
+                let z = {};
+                for (let i = 4 ; i < 8 ; i++) {
+                    if (i == 4) {
+                        z[production_data[i - 4]] = product_z[i] * product_z[0]
+                    } else {
+                        z[production_data[i - 4]] = product_z[i]
+                    }
+                }
+                
+                let overhead_pools = Array.from(document.querySelectorAll(".overhead_cost_pool")).map(x => x.innerText.toLowerCase().replace(/ /g, "_"));
+                let annual_costs = Array.from(document.querySelectorAll(".annual_cost")).map(x => parseInt(x.value));
+                let cost_drivers = Array.from(document.querySelectorAll(".dropdown")).map(x => x.value);
+                
+                let total_machine_time =    product_x[0] * product_x[4] +
+                                            product_y[0] * product_y[4] +
+                                            product_z[0] * product_z[4];
+                let total_production_runs = product_x[5] +
+                                            product_y[5] +
+                                            product_z[5];
+                let total_receipts =        product_x[6] +
+                                            product_y[6] +
+                                            product_z[6];
+                let total_orders =          product_x[7] +
+                                            product_y[7] +
+                                            product_z[7];
+                let cost_drivers_object = {
+                    "machine_time": total_machine_time,
+                    "production_runs": total_production_runs,
+                    "material_receipts": total_receipts,
+                    "production_orders": total_orders
+                };
+                
+                let cost_driver_rates = {};
+                for (let i = 0 ; i < overhead_pools.length ; i++) {
+                    cost_driver_rates[cost_drivers[i] + i] = annual_costs[i] / cost_drivers_object[cost_drivers[i]];
+                }
+                
+                let x_total_costs = 0;
+                for (let i = 0 ; i < cost_drivers.length ; i++) {
+                    let rate = cost_driver_rates[cost_drivers[i] + i];
+                    let cost = x[cost_drivers[i]] * rate;
+                    x_total_costs += cost;
+                }
+                let x_overheads_per_unit = x_total_costs / product_x[0]
+                
+                let y_total_costs = 0;
+                for (let i = 0 ; i < cost_drivers.length ; i++) {
+                    let rate = cost_driver_rates[cost_drivers[i] + i];
+                    let cost = y[cost_drivers[i]] * rate;
+                    y_total_costs += cost;
+                }
+                let y_overheads_per_unit = y_total_costs / product_y[0]
+                
+                let z_total_costs = 0;
+                for (let i = 0 ; i < cost_drivers.length ; i++) {
+                    let rate = cost_driver_rates[cost_drivers[i] + i];
+                    let cost = z[cost_drivers[i]] * rate;
+                    z_total_costs += cost;
+                }
+                let z_overheads_per_unit = z_total_costs / product_z[0]
+                
+                let x_total = (product_x[1] + (product_x[2] * product_x[3]) + x_overheads_per_unit).toFixed(2);
+                let y_total = (product_y[1] + (product_y[2] * product_y[3]) + y_overheads_per_unit).toFixed(2);
+                let z_total = (product_z[1] + (product_z[2] * product_z[3]) + z_overheads_per_unit).toFixed(2);
+                
+                x_span.innerHTML = x_total;
+                y_span.innerHTML = y_total;
+                z_span.innerHTML = z_total;
+            }
+            
+            function OAR() {
+                let units = Array.from(document.getElementsByClassName("units")).map(x => parseInt(x.value));
+                let labour_hours = Array.from(document.getElementsByClassName("labour_hours")).map(x => parseInt(x.value));
+                let machine_time = Array.from(document.getElementsByClassName("machine_time")).map(x => parseInt(x.value));
+                let production_runs = Array.from(document.getElementsByClassName("production_runs")).map(x => parseInt(x.value));
+                let material_receipts = Array.from(document.getElementsByClassName("material_receipts")).map(x => parseInt(x.value));
+                let production_orders = Array.from(document.getElementsByClassName("production_orders")).map(x => parseInt(x.value));
+                
+                let total_units = units.reduce((sum, a) => sum + a, 0);
+                let total_labour_hours =        labour_hours[0] * units[0] +
+                                                labour_hours[1] * units[1] +
+                                                labour_hours[2] * units[2];
+                let total_machine_time =        machine_time[0] * units[0] +
+                                                machine_time[1] * units[1] +
+                                                machine_time[2] * units[2];
+                let total_production_runs =     production_runs[0] * units[0] +
+                                                production_runs[1] * units[1] +
+                                                production_runs[2] * units[2];
+                let total_material_receipts =   material_receipts[0] * units[0] +
+                                                material_receipts[1] * units[1] +
+                                                material_receipts[2] * units[2];
+                let total_production_orders =   production_orders[0] * units[0] +
+                                                production_orders[1] * units[1] +
+                                                production_orders[2] * units[2];
+                
+                let OAR = {
+                    "units": total_units,
+                    "direct_labour_hours": total_labour_hours,
+                    "machine_time": total_machine_time,
+                    "production_runs": total_production_runs,
+                    "material_receipts": total_material_receipts,
+                    "production_orders": total_production_orders
+                }
+                
+                let dropdown = document.getElementById("OAR").value;
+                let OAR_total = OAR[dropdown];
+                
+                let annual_costs = Array.from(document.querySelectorAll(".annual_cost")).map(x => parseInt(x.value)).reduce((sum, a) => sum + a, 0);
+                
+                let OAR_rate = annual_costs / OAR_total;
+                
+                let product_x = Array.from(document.querySelectorAll(".x")).map(x => parseInt(x.value));
+                let product_y = Array.from(document.querySelectorAll(".y")).map(x => parseInt(x.value));
+                let product_z = Array.from(document.querySelectorAll(".z")).map(x => parseInt(x.value));
+                
+                let production_data_OAR = Array.from(document.querySelectorAll(".production_data_OAR")).map(x => x.innerText.toLowerCase().replace(/ /g, "_"));
+                let production_data_x = {};
+                for (let i = 0 ; i < production_data_OAR.length ; i++) {
+                    production_data_x[production_data_OAR[i]] = product_x[i]
+                }
+                let production_data_y = {};
+                for (let i = 0 ; i < production_data_OAR.length ; i++) {
+                    production_data_y[production_data_OAR[i]] = product_y[i]
+                }
+                let production_data_z = {};
+                for (let i = 0 ; i < production_data_OAR.length ; i++) {
+                    production_data_z[production_data_OAR[i]] = product_z[i]
+                }
+                
+                let x_total, y_total, z_total;
+                if (dropdown != "units") {
+                    x_total = (product_x[1] + (product_x[2] * product_x[3]) + (OAR_rate * production_data_x[dropdown])).toFixed(2);
+                    y_total = (product_y[1] + (product_y[2] * product_y[3]) + (OAR_rate * production_data_y[dropdown])).toFixed(2);
+                    z_total = (product_z[1] + (product_z[2] * product_z[3]) + (OAR_rate * production_data_z[dropdown])).toFixed(2);
+                } else {
+                    x_total = (product_x[1] + (product_x[2] * product_x[3]) + OAR_rate).toFixed(2);
+                    y_total = (product_y[1] + (product_y[2] * product_y[3]) + OAR_rate).toFixed(2);
+                    z_total = (product_z[1] + (product_z[2] * product_z[3]) + OAR_rate).toFixed(2);
+                }
+                
+                let x_span = document.getElementById("x_OAR_total_cost_span");
+                let y_span = document.getElementById("y_OAR_total_cost_span");
+                let z_span = document.getElementById("z_OAR_total_cost_span");
+                
+                x_span.innerHTML = x_total;
+                y_span.innerHTML = y_total;
+                z_span.innerHTML = z_total;
+            }
+        </script>
+    </body>
+</html>
